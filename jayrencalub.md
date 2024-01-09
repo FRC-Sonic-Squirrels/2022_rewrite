@@ -1,6 +1,6 @@
 Guide to rewrite 
 
-Enter your name here: 
+Enter your name here: Jayren Calub
 
 1. First create a new branch
 2. Edit this readme file and enter your name

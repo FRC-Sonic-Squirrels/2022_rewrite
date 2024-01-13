@@ -16,7 +16,7 @@ public class IntakeRetractAndStop extends Command {
     @Override
     public void initialize() {
         intake.setVelocityCMD(0).schedule();
-        intake.retract();
+        intake.retract().schedule();
     }
 
     // Called every time the scheduler runs while the command is scheduled.

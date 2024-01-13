@@ -15,7 +15,7 @@ public class IntakeDeployNoSpin extends Command{
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        intake.deploy();
+        intake.deploy().schedule();
     }
 
     // Called every time the scheduler runs while the command is scheduled.

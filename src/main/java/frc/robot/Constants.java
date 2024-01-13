@@ -13,7 +13,18 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+  public static final String CANBUS_STR = "rio";
+
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+  }
+  
+  public static class INTAKE_CONSTANTS {
+    // intake
+    public static final int INTAKE_MOTOR_ID = 18;
+    public static final int INTAKE_MOTOR_RPM = 1000;
+  
+    public static final int PNEUMATIC_CYL_CHANNEL = 15;
   }
 }

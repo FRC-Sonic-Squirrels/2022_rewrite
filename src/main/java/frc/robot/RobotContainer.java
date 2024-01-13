@@ -9,6 +9,7 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeDeployAndSpin;
 import frc.robot.commands.IntakeDeployNoSpin;
+import frc.robot.commands.IntakeRetractAndStop;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -56,8 +57,12 @@ public class RobotContainer {
     // cancelling on release.
     // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
-    m_driverController.rightBumper().whileTrue(new IntakeDeployNoSpin(m_intake));
-    m_driverController.rightStick().whileTrue(new IntakeDeployAndSpin(m_intake));
+    m_driverController.rightBumper().onTrue(new IntakeDeployNoSpin(m_intake))
+      .onFalse(new IntakeRetractAndStop(m_intake));
+
+    m_driverController.rightTrigger(.05).onTrue(new IntakeDeployAndSpin(m_intake))
+      .onFalse(new IntakeRetractAndStop(m_intake));
+
   }
 
   /**

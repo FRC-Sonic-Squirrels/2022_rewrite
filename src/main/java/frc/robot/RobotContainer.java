@@ -10,8 +10,10 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeDeployAndSpin;
 import frc.robot.commands.IntakeDeployNoSpin;
 import frc.robot.commands.IntakeRetractAndStop;
+import frc.robot.commands.Shoot;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -32,6 +34,9 @@ public class RobotContainer {
 
   private final Intake m_intake =
     new Intake();
+
+  private final Shooter m_shooter =
+    new Shooter();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -57,12 +62,20 @@ public class RobotContainer {
     // cancelling on release.
     // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
+    // INTAKE ====================
     m_driverController.rightBumper().onTrue(new IntakeDeployNoSpin(m_intake))
       .onFalse(new IntakeRetractAndStop(m_intake));
 
     m_driverController.rightTrigger(.05).onTrue(new IntakeDeployAndSpin(m_intake))
       .onFalse(new IntakeRetractAndStop(m_intake));
+    // ===========================
 
+    // SHOOTER ===================
+    m_driverController.leftBumper().whileTrue(new Shoot(m_shooter, null));
+
+
+
+    // ===========================
   }
 
   /**

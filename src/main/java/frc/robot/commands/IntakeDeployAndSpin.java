@@ -19,7 +19,7 @@ public class IntakeDeployAndSpin extends Command {
         this.intake.deploy().schedule();
         
         // TODO: use constant
-        this.intake.setVelocityCMD(Constants.INTAKE_CONSTANTS.INTAKE_MOTOR_RPM).schedule();
+        this.intake.setVelocityCMD(Constants.INTAKE_CONSTANTS.INTAKE_MOTOR_RPS).schedule();
     }
 
     // Called every time the scheduler runs while the command is scheduled.

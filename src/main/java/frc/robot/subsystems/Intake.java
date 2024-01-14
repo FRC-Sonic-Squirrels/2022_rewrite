@@ -1,5 +1,8 @@
 package frc.robot.subsystems;
 
+import org.littletonrobotics.junction.AutoLogOutput;
+
+import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
@@ -23,7 +26,6 @@ public class Intake extends SubsystemBase{
     int targetRPM = 0;
 
     public Intake() {
-        //todo: config motor
         this.solenoid = new Solenoid(PneumaticsModuleType.REVPH, Constants.INTAKE_CONSTANTS.PNEUMATIC_CYL_CHANNEL);
 
         this.talonFX = new TalonFX(Constants.INTAKE_CONSTANTS.INTAKE_MOTOR_ID, Constants.CANBUS_STR);
@@ -31,6 +33,15 @@ public class Intake extends SubsystemBase{
         this.voltOut = new VoltageOut(0);
         this.velOut = new VelocityVoltage(0);
         this.cycleOut = new DutyCycleOut(0);
+
+
+        // motor configs
+        Slot0Configs config = new Slot0Configs();
+
+        config.kP = 0.2;
+        config.kA = 0.05;
+
+        this.talonFX.getConfigurator().apply(config);
     }
 
     public Command setPercentOut(double percent) {
@@ -46,8 +57,6 @@ public class Intake extends SubsystemBase{
     }
 
     public Command setVelocityCMD(double vel) {
-        System.out.println("speen");
-
         return runOnce(() -> {
             this.talonFX.setControl(this.velOut.withVelocity(vel));
         });
@@ -80,11 +89,13 @@ public class Intake extends SubsystemBase{
         });
     }
 
+    @AutoLogOutput(key = "Intake/IntakeRPM")
     public double getRPM() {
-        // return this.talonFX.getRotorVelocity().getValueAsDouble();
-        return 0.0;
+        return this.talonFX.getRotorVelocity().getValueAsDouble() * 60.0;
+        // return 0.0;
     }
 
+    @AutoLogOutput(key = "Intake/Deployed")
     public boolean isDeployed() {
         // TODO: use sensor instead of solenoid
         return this.solenoid.get();

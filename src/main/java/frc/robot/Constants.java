@@ -15,16 +15,58 @@ package frc.robot;
 public final class Constants {
 
   public static final String CANBUS_STR = "rio";
+  public static final String CANBUS2_STR = "CANivore";
 
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+
+  public static final class SWERVE_CONSTANTS {
+    public static final int FLEFT_DRIVE_MOTOR = 1;
+    public static final int FLEFT_STEER_MOTOR = 11;
+    public static final int FLEFT_CANCODER = 21;
+
+    public static final int FRIGHT_DRIVE_MOTOR = 2;
+    public static final int FRIGHT_STEER_MOTOR = 12;
+    public static final int FRIGHT_CANCODER = 22;
+
+    public static final int BLEFT_DRIVE_MOTOR = 4;
+    public static final int BLEFT_STEER_MOTOR = 14;
+    public static final int BLEFT_CANCODER = 24;
+
+    public static final int BRIGHT_DRIVE_MOTOR = 3;
+    public static final int BRIGHT_STEER_MOTOR = 13;
+    public static final int BRIGHT_CANCODER = 23;
+
+  }
   
+
   public static class INTAKE_CONSTANTS {
     // intake
     public static final int INTAKE_MOTOR_ID = 18;
-    public static final int INTAKE_MOTOR_RPM = 1000;
+
+    private static final int INTAKE_MOTOR_RPM = 200;
+    public static final double INTAKE_MOTOR_RPS = (INTAKE_MOTOR_RPM / 60.0) * 5;
   
     public static final int PNEUMATIC_CYL_CHANNEL = 15;
+  }
+
+
+  public static class SHOOTER_CONSTANTS {
+    public static final int FLYWHEEL_MOTOR_ID = 16;
+
+    private static final int TARGET_RPM = 500;
+    public static final double TARGET_RPS = TARGET_RPM / 60.0;
+
+    private static final int TARGET_ACCELERATION = 10;
+    public static final double TARGET_ACCELERATION_PS = TARGET_ACCELERATION / 60.0;
+  }
+
+
+  public static class INDEXER_CONSTANTS {
+    public static final int UPPER_BELT_MOTOR_ID = 6;
+    public static final int LOWER_BELT_MOTOR_ID = 5;
+
+
   }
 }

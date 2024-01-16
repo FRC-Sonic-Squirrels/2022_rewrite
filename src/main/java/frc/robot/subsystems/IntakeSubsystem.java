@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
+import static java.lang.Math.PI;
 
 
 public class IntakeSubsystem extends SubsystemBase {
@@ -23,9 +24,13 @@ public class IntakeSubsystem extends SubsystemBase {
 
   @Override
   public void periodic(){
-
+    if(isDeployed == true){
+      setPercentOut(0.5);
+    } else {
+      setPercentOut(0);
+    }
   }
-  
+
   // sets percent of intake roller speed
   public void setPercentOut(double percent){
     if (percent > 1.0){
@@ -43,7 +48,7 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void setVelocity(double rpm){
-    velocity = rpm;
+    velocity = rpm*(PI/30);
   }
 
   public void deploy(){

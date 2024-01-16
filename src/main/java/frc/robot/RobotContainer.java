@@ -55,7 +55,7 @@ public class RobotContainer {
     // new Trigger(m_intakeSubsystem::isDeployed).onTrue(new IntakeDeployAndSpin(3000, m_intakeSubsystem));
     // new Trigger(m_intakeSubsystem::isDeployed).onTrue(new IntakeDeployNoSpin(m_intakeSubsystem));
 
-    m_driverController.rightTrigger().whileTrue(new IntakeDeployAndSpin(3000.0, m_intakeSubsystem));
+    m_driverController.rightTrigger().whileTrue(new IntakeDeployAndSpin(0.5, m_intakeSubsystem));
     m_driverController.rightBumper().whileTrue(new IntakeDeployNoSpin(m_intakeSubsystem));
     
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,

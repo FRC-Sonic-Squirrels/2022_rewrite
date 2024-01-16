@@ -6,9 +6,7 @@ Enter your name here: Jayren Calub
 2. Edit this readme file and enter your name
 3. commit your changes
 4. push your changes
-
 5. Start working on subsystems
-
 
 Intake
 

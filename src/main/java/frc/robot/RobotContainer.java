@@ -6,11 +6,14 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
+import frc.robot.commands.BeethovenInfection;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeDeployAndSpin;
 import frc.robot.commands.IntakeDeployNoSpin;
 import frc.robot.commands.IntakeRetractAndStop;
-import frc.robot.commands.Shoot;
+import frc.robot.commands.StartShoot;
+import frc.robot.commands.StopShoot;
+import frc.robot.subsystems.Conductor;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
@@ -37,6 +40,9 @@ public class RobotContainer {
 
   private final Shooter m_shooter =
     new Shooter();
+
+  private final Conductor m_conductor =
+    new Conductor();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -71,11 +77,16 @@ public class RobotContainer {
     // ===========================
 
     // SHOOTER ===================
-    m_driverController.leftBumper().whileTrue(new Shoot(m_shooter, null));
-
+    m_driverController.leftBumper().onTrue(new StartShoot(m_shooter, null))
+      .onFalse(new StopShoot(m_shooter, null));
+    
+    m_driverController.povUp().onTrue(m_shooter.increaseRPM(50));
+    m_driverController.povDown().onTrue(m_shooter.decreaseRPM(50));
 
 
     // ===========================
+
+    m_driverController.a().onTrue(new BeethovenInfection(m_conductor));
   }
 
   /**

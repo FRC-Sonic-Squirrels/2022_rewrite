@@ -14,7 +14,7 @@ public class BeethovenInfection extends Command {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        this.conductor.loadMusic("output.chrp");
+        this.conductor.loadMusic();
         this.conductor.play();
     }
 

@@ -15,8 +15,10 @@ import frc.robot.commands.StartShoot;
 import frc.robot.commands.StopShoot;
 import frc.robot.subsystems.Conductor;
 import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.intake.Intake;
+import frc.robot.subsystems.intake.IntakeIOREAL;
+import frc.robot.subsystems.shooter.Shooter;
+import frc.robot.subsystems.shooter.ShooterIOREAL;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -36,10 +38,10 @@ public class RobotContainer {
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
   private final Intake m_intake =
-    new Intake();
+    new Intake(new IntakeIOREAL());
 
   private final Shooter m_shooter =
-    new Shooter();
+    new Shooter(new ShooterIOREAL());
 
   private final Conductor m_conductor =
     new Conductor();
